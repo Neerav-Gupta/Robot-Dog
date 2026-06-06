@@ -2,6 +2,7 @@
 
 A Raspberry Pi-powered quadruped robot dog controlled by a PS4 controller. Uses 8 servo motors and the Adafruit PCA9685 driver for walking, turning, sitting, and dancing. You can find images, videos, and CAD screenshots in the following [google drive folder](https://drive.google.com/drive/folders/1YYMrmW3EgGKGc-ENeqzOh4piAwOo36y2?usp=drive_link).
 
+![ROBOT CAD](docs/CAD.png)
 
 ## Features
 
