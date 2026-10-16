@@ -1,6 +1,6 @@
 # Quadruped Robot Dog
 
-A Raspberry Pi-powered quadruped robot dog controlled by a PS4 controller. Uses 8 servo motors and the Adafruit PCA9685 driver for walking, turning, sitting, and dancing. You can find images, videos, and CAD screenshots in the following [google drive folder](https://drive.google.com/drive/folders/1YYMrmW3EgGKGc-ENeqzOh4piAwOo36y2?usp=drive_link).
+A Raspberry Pi-powered quadruped robot dog controlled by a PS4 controller. Uses 12 servo motors (3 per leg) and the Adafruit PCA9685 driver for walking, turning, sitting, and dancing. You can find images, videos, and CAD screenshots in the following [google drive folder](https://drive.google.com/drive/folders/1YYMrmW3EgGKGc-ENeqzOh4piAwOo36y2?usp=drive_link).
 
 ![ROBOT CAD](docs/CAD.png)
 
@@ -27,7 +27,7 @@ A Raspberry Pi-powered quadruped robot dog controlled by a PS4 controller. Uses 
 ```bash
 sudo apt update && sudo apt upgrade
 sudo raspi-config  # Enable I2C
-pip3 install adafruit-circuitpython-servokit pyPS4Controller adafruit-blinka
+pip3 install -r requirements.txt
 sudo apt install i2c-tools
 i2cdetect -y 1  # Should show 0x40
 ```
@@ -44,17 +44,29 @@ python3 Controller.py
 
 - `R2` - Walk Forward
 - `L2` - Walk Backward
-- `↑/↓/←/→` - Turn
+- `↑/↓` - Turn Right/Left
+- `←/→` - Strafe Left/Right
 - `X` - Default Standing Position
 - `O` - Sit
 - `▢` - Dance
-- `△` - Lift a leg
+- `△` - Lift a Leg
 
 ## File Structure
 
 ```
 robot-dog/
-├── Controller.py
-├── Walk.py
+├── Controller.py      # PS4 input handling, maps buttons to gait functions
+├── Walk.py            # Robot/Leg/Motor classes and fixed-angle gait functions
+├── WalkIK.py          # Experimental inverse-kinematics gait engine (not used by Controller.py)
+├── requirements.txt
+├── LICENSE
+├── docs/
+│   └── CAD.png
 └── README.md
 ```
+
+> **Note:** `WalkIK.py` is a work-in-progress inverse-kinematics rewrite of the gait logic in `Walk.py`. It isn't wired up to `Controller.py` and wasn't fully tuned, but is included for reference.
+
+## License
+
+Released under the [MIT License](LICENSE).
